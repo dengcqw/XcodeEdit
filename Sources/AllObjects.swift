@@ -18,6 +18,11 @@ public enum AllObjectsError: Error {
 public class AllObjects {
   var dict: [String: PBXObject] = [:]
   var fullFilePaths: [String: Path] = [:]
+  
+  public var FullFilePaths: [String: Path] { 
+    return fullFilePaths 
+  }
+  
 
   func object<T : PBXObject>(_ key: String) -> T {
     let obj = dict[key]!

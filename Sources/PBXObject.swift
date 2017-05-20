@@ -11,9 +11,9 @@ import Foundation
 public typealias Fields = [String: AnyObject]
 
 public /* abstract */ class PBXObject {
-  let id: String
+  public let id: String
   let fields: Fields
-  let allObjects: AllObjects
+  public let allObjects: AllObjects
 
   public lazy var isa: String = self.string("isa")!
 
@@ -36,7 +36,7 @@ public /* abstract */ class PBXObject {
     }
   }
 
-  func string(_ key: String) -> String? {
+  public func string(_ key: String) -> String? {
     return fields[key] as? String
   }
 
