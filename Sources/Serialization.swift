@@ -91,7 +91,7 @@ internal class Serializer {
     ]
 
     for key in projectFile.dict.keys.sorted() {
-      let val: AnyObject = projectFile.dict[key]!
+      let val: Any = projectFile.dict[key]!
 
       if key == "objects" {
 
@@ -219,7 +219,7 @@ internal class Serializer {
     return "\"\(str)\""
   }
 
-  func objval(key: String, val: AnyObject, multiline: Bool) -> [String] {
+  func objval(key: String, val: Any, multiline: Bool) -> [String] {
     var parts: [String] = []
     let keyStr = valStr(key)
 
@@ -257,7 +257,7 @@ internal class Serializer {
         }
 
         for valKey in valObj.keys.sorted() {
-          let valVal: AnyObject = valObj[valKey]!
+          let valVal: Any = valObj[valKey]!
           let ps = objval(key: valKey, val: valVal, multiline: multiline)
 
           if multiline {
@@ -282,7 +282,7 @@ internal class Serializer {
       parts.append("\(keyStr) = {")
 
       for valKey in valObj.keys.sorted() {
-        let valVal: AnyObject = valObj[valKey]!
+        let valVal: Any = valObj[valKey]!
         let ps = objval(key: valKey, val: valVal, multiline: multiline)
 
         if multiline {
@@ -335,7 +335,7 @@ internal class Serializer {
 
     for key in fields.keys.sorted() {
       if key == "isa" { continue }
-      let val: AnyObject = fields[key]!
+      let val: Any = fields[key]!
 
       for p in objval(key: key, val: val, multiline: multiline) {
         parts.append(p)

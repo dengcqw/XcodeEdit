@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias Fields = [String: AnyObject]
+public typealias Fields = [String: Any]
 
 public /* abstract */ class PBXObject {
   public let id: String
