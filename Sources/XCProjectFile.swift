@@ -46,9 +46,18 @@ public class XCProjectFile {
     var format: PropertyListSerialization.PropertyListFormat = PropertyListSerialization.PropertyListFormat.binary
     let obj = try PropertyListSerialization.propertyList(from: data, options: options, format: &format)
 
+#if os(Linux)
+    guard let hashDict = obj as? [AnyHashable: Any] else {
+      throw ProjectFileError.invalidData
+    }
+    let dict = hashDict.reduce(into: [String: Any]()) { acc, item in
+      acc["\(item.0.base)"] = item.1
+    }
+#else
     guard let dict = obj as? Fields else {
       throw ProjectFileError.invalidData
     }
+#endif
 
     self.init(dict: dict, format: format)
   }
